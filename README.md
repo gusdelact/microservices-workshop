@@ -34,7 +34,7 @@ https://docs.aws.amazon.com/codecommit/latest/userguide/setting-up-ssh-unixes.ht
 
 
 
-#Contributors
+# Contributors
 
-Gustavo de la Cruz (awsgus@)
-Ricardo Casteñeda (awsric@)
+* Gustavo de la Cruz (awsgus@)
+* Ricardo Casteñeda (awsric@)

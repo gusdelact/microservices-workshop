@@ -32,6 +32,11 @@ Follow the public guide provided by AWS to configure your local machine.
 
 https://docs.aws.amazon.com/codecommit/latest/userguide/setting-up-ssh-unixes.html 
 
+# !IMPORTANT Some rules
+* Keep master branch only with the README file
+* Update README file on master branch and merge into the other branches
+* Do not merge on master branch
+* Branch from branches and keep the sequence. The idea is to keep the evolution of the examples
 
 
 # Contributors

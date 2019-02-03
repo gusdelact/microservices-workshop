@@ -1,0 +1,22 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - npm install -g @angular/cli
+  pre_build:
+    commands:
+      - cd ng-spa
+      - echo Logging in to Amazon ECR...
+      - npm install
+      - ls -la 
+      - echo List ./dist/ng-site
+      - ls -la ./dist
+  build:
+    commands:
+      - ng build --prod
+artifacts:
+    files: 
+      - ./dist/ng-spa/**
+    name: ng-site-dist
+    discard-paths: true

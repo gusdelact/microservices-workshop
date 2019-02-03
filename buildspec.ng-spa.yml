@@ -7,7 +7,7 @@ phases:
   pre_build:
     commands:
       - cd ng-spa
-      - echo Logging in to Amazon ECR...
+      - echo Instal node modules...
       - npm install
       - ls -la 
   build:

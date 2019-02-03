@@ -7,7 +7,7 @@ phases:
   pre_build:
     commands:
       - cd ng-spa
-      - echo Instal node modules...
+      - echo Installing node modules...
       - npm install
       - ls -la 
   build:
@@ -16,9 +16,9 @@ phases:
   post_build:
     commands:
       - echo List dist files
-      - ls -lar dist
+      - ls -lar dist/*
 artifacts:
     files: 
-      - ./dist/ng-spa/**
+      - ./ng-spa/dist/ng-spa/**
     name: ng-site-dist
     discard-paths: true

@@ -10,11 +10,13 @@ phases:
       - echo Logging in to Amazon ECR...
       - npm install
       - ls -la 
-      - echo List ./dist/ng-site
-      - ls -la ./dist
   build:
     commands:
       - ng build --prod
+  post_build:
+    commands:
+      - echo List dist files
+      - ls -lar dist
 artifacts:
     files: 
       - ./dist/ng-spa/**

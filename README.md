@@ -1,30 +1,31 @@
 
-Project which helps to explain different aspects regarding microservices architecture according to Richardson's pattern language for microservices. The idea is to show concepts of the architecture through a sequence of steps. Every step has its own Git branch in order to focus in concepts such as deployment, communication among services, cross cutting concerns, resiliency, etc.
+Project which helps to explain different aspects regarding microservices architecture according to Richardson's pattern language for microservices. The purpose is to show concepts of the microservices architecture through a sequence of stages according to the life cycle of microservices proposed on the book "Spring Microservices in Action". Every stage has its own Git branch in order to focus in specific concepts such as deployment, communication among services, cross cutting concerns, resiliency, etc.
+
+
 
 # Branches
 
 Use git checkout to change among branches.
 
-## v1.x
+## v1.x. Assembly
 
-Standalone spring-boot microservice. Intented to show the deployment in OpenShift, ECS and excecuting simple CI/CD pipelines
+Standalone spring-boot microservices. Intented to show the deployment in OpenShift, ECS and excecuting simple CI/CD pipelines. 
 
-## v2.x 
+## v2.x. Bootstraping
 
-Interaction between microservicio-base and microservicio-dummy. Self-registration and discovery with Eureka.
+Microservices' self-service registration into discovery service (Eureka). External configuration via Spring Config Server or AWS Secure Secrets Manager.
 
-## v3.x
+## v3.x. Discovery
 
-Circuit breaker, tracing and integration with data repositories.
+Service discovery (Eureka). Making services more resilient implementing circuit breakers (Hystrix). Implementing security mechanisms. Event-driven architecture with asynchronous messaging.
 
-## v4.x
+## v4.x. Monitoring
 
 Security mechanisms (oauth, authentication). Microservices exposure through via REST API. Consuming microservices from an angular-based single page application.
 
-## v5.x
+## v5.x. UI
 
-Asynchronous interaction among services utilizing messaging.
-
+Consuming services through a single-page application (Angular-based application). Routing microservices from the outside world through and API (Zuul)
 
 ## Cloning repo from codecommit
 

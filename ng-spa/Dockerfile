@@ -1,2 +1,2 @@
 FROM nginx:1.15-alpine
-COPY ./dist/ng-site /usr/share/nginx/html
+COPY ./dist/ng-spa /usr/share/nginx/html

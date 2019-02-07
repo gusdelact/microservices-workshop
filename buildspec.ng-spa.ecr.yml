@@ -1,6 +1,12 @@
 version: 0.2
 
 phases:
+  install:
+    commands:
+      - npm install -g @angular/cli
+      - cd ng-spa
+      - echo Installing node modules...
+      - npm install
   pre_build:
     commands:
       - echo Logging in to Amazon ECR...
@@ -11,12 +17,13 @@ phases:
       - IMAGE_TAG=${COMMIT_HASH:=latest}
   build:
     commands:
-      - echo Build started on `date`
-      - npm install
-      - npm build --prod --output-path ./dist/ng-sit
+      - ng build --prod 
+      - ls -la ./dist/*
       - echo Building the Docker image...          
       - docker build . -t $REPOSITORY_URI:latest  
       - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
+      - docker run --rm $REPOSITORY_URI:latest ls -la /usr/share/nginx/html
+
   post_build:
     commands:
       - echo Build completed on `date`
@@ -25,5 +32,6 @@ phases:
       - docker push $REPOSITORY_URI:$IMAGE_TAG
       - echo Writing image definitions file...
       - printf '[{"name":"ng-spa","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
+      - ls -ltr
 artifacts:
-    files: imagedefinitions.json
+    files: ./ng-spa/imagedefinitions.json

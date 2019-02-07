@@ -36,4 +36,5 @@ phases:
       - printf '[{"name":"ng-spa","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
       - ls -ltr
 artifacts:
-    files: imagedefinitions.json
+    files: ./ng-spa/imagedefinitions.json
+    discard-paths: true

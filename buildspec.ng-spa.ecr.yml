@@ -17,8 +17,11 @@ phases:
       - IMAGE_TAG=${COMMIT_HASH:=latest}
   build:
     commands:
-      - ng build --prod 
-      - ls -la ./dist/*
+      - ng build --prod
+      - pwd 
+      - ls -la ./dist/
+      #- ls -la ./dist/ng-spa
+      #- ls -la ./dist/ng-site
       - echo Building the Docker image...          
       - docker build . -t $REPOSITORY_URI:latest  
       - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
@@ -26,7 +29,6 @@ phases:
 
   post_build:
     commands:
-      - echo Build completed on `date`
       - echo Pushing the Docker images...
       - docker push $REPOSITORY_URI:latest
       - docker push $REPOSITORY_URI:$IMAGE_TAG

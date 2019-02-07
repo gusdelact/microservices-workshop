@@ -17,7 +17,7 @@ phases:
       - IMAGE_TAG=${COMMIT_HASH:=latest}
   build:
     commands:
-      - ng build --prod
+      - ng build --prod --base-href /ng-spa/
       - pwd 
       - ls -la ./dist/
       #- ls -la ./dist/ng-spa

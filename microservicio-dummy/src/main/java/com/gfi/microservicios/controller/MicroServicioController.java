@@ -19,14 +19,14 @@ public class MicroServicioController {
 
 	@RequestMapping(value="mensaje",method = RequestMethod.GET)
 	public String mensaje() {
-		logger.info("dummy mensaje invocado");
+		logger.debug("dummy mensaje invocado");
 		
 		return "un mensaje dummy";
 	}
 
 	@RequestMapping(value="saludo",method = RequestMethod.GET)
 	public String saludo() {
-		logger.info("dummy saludo invocado");
+		logger.debug("dummy saludo invocado");
 		randomlyRunLong();
 		return "que hay de nuevo microservicio!";
 	}
@@ -40,12 +40,12 @@ public class MicroServicioController {
 		if (randomNum==3) sleep();
 	}
 	private void sleep(){
-		logger.info("sleep invocado");
+		logger.debug("sleep invocado");
 		try {
 			Thread.sleep(120000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		logger.info("sleep despertando");
+		logger.debug("sleep despertando");
 	}
 }

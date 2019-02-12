@@ -1,0 +1,26 @@
+spring:
+  application:
+     name: zipkinsvr.service
+
+
+#Default port is 8761
+server:
+  port: 9411
+
+
+#Setting logging levels
+logging:
+  level:
+    com.netflix: WARN
+    org.springframework.web: WARN
+    com.gfi: DEBUG
+    
+eureka:
+   instance:
+      preferIpAddress: true
+   client:
+      registerWithEureka: true
+      fetchRegistry: true
+      serviceUrl:
+         defaultZone: http://registerservice.myproject.svc.cluster.local:8761/eureka
+         

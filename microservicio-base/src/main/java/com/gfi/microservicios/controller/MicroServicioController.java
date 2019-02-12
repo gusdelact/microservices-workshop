@@ -30,6 +30,11 @@ public class MicroServicioController {
 	}
 	
  
+	@RequestMapping(value="/marco", method = RequestMethod.GET)
+	public String noDummy(){
+		logger.debug("marco polo");
+		return "polo";
+	}
 	
 	
 	@RequestMapping(value="/v3/mensaje",method = RequestMethod.GET)

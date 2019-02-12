@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: Deployment
+metadata:
+  name: ${project.artifactId}
+spec:
+  template:
+    spec:
+      containers:
+        - env:
+            - name: JAVA_OPTIONS
+              value: "-Dspring.profiles.active=openshift"
+          livenessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /health
+              port: 9999
+              scheme: HTTP
+            initialDelaySeconds: 180
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
+          name: spring-boot
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 9999
+              scheme: HTTP
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1

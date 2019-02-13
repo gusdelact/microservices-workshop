@@ -11,3 +11,9 @@ curl -X GET \
   -H 'cache-control: no-cache' 
   
   
+  curl -X GET  -k  https://zuulsvr-v4-0.127.0.0.1.nip.io/api/microservicio-base/microservicio/marco   -H 'authorization: Bearer 763934aa-1c8c-49bc-95e4-33f1d015cf36'   -H 'cache-control: no-cache' 
+  curl -X GET  -k  https://zuulsvr-v4-0.127.0.0.1.nip.io/api/microservicio-base/microservicio/v3/mensaje   -H 'authorization: Bearer 763934aa-1c8c-49bc-95e4-33f1d015cf36'   -H 'cache-control: no-cache' 
+  
+  
+  curl -X GET  -k  https://zuulsvr-v4-0.127.0.0.1.nip.io/api/microservicio-dummy/microservicio/v3/mensaje   -H 'authorization: Bearer 763934aa-1c8c-49bc-95e4-33f1d015cf36'   -H 'cache-control: no-cache' 
+  

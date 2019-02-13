@@ -15,3 +15,14 @@ curl -X POST \
   -F grant_type=password \
   -F username=john.carnell \
   -F password=password1
+
+
+curl -k -X POST \
+   https://zuulsvr-v4-0.127.0.0.1.nip.io/api/a/auth/oauth/token \
+  -H 'authorization: Basic YXBsaWNhY2lvbjp1bnNlY3JldG8=' \
+  -H 'content-type: multipart/form-data' \
+  -F grant_type=password \
+  -F username=john.carnell \
+  -F password=password1
+  
+  

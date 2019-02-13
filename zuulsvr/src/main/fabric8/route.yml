@@ -9,5 +9,4 @@ spec:
     kind: Service
     name: ${project.artifactId}
   tls:
-    insecureEdgeTerminationPolicy: Redirect
     termination: edge

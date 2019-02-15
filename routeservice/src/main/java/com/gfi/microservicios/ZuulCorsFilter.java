@@ -38,7 +38,11 @@ public class ZuulCorsFilter extends ZuulFilter {
 		// context.setSendZuulResponse(false);
 //		context.sendZuulResponse();
 
+		LOG.debug(context.toString());
+
+
 		if ("OPTIONS".equals(context.getRequest().getMethod())) {
+			LOG.info("OPTIONS METHOD detected");
 			context.setRouteHost(null);
 			context.setResponseStatusCode(200);
 		}

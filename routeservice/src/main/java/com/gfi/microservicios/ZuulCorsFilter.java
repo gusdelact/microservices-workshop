@@ -31,14 +31,19 @@ public class ZuulCorsFilter extends ZuulFilter {
 
 	public Object run() {
 		RequestContext context = getCurrentContext();
-
-		context.addZuulResponseHeader("Access-Control-Allow-Origin", "*");
-		context.addZuulResponseHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS");
-		context.addZuulResponseHeader("Access-Control-Allow-Headers", "Content-Type, Authorization, Cache-Control");
+		
+		
+//		context.addZuulResponseHeader("Access-Control-Allow-Origin", "*");
+//		context.addZuulResponseHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS");
+//		context.addZuulResponseHeader("Access-Control-Allow-Headers", "Content-Type, Authorization, Cache-Control");
 		// context.setSendZuulResponse(false);
 //		context.sendZuulResponse();
 
 		LOG.debug(context.toString());
+		
+		
+		for(String h : context.getResponse().getHeaderNames())
+			LOG.debug(h + " : " + context.getResponse().getHeader(h));
 
 
 		if ("OPTIONS".equals(context.getRequest().getMethod())) {

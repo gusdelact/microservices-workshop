@@ -36,7 +36,7 @@ public class ZuulCorsFilter extends ZuulFilter {
 		context.addZuulResponseHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS");
 		context.addZuulResponseHeader("Access-Control-Allow-Headers", "Content-Type, Authorization, Cache-Control");
 		// context.setSendZuulResponse(false);
-		context.sendZuulResponse();
+//		context.sendZuulResponse();
 
 		if ("OPTIONS".equals(context.getRequest().getMethod())) {
 			context.setRouteHost(null);

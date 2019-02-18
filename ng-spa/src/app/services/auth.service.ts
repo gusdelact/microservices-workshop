@@ -16,27 +16,33 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
   
-  currentUser
+  private authorization
   
-  getCurrentUser(){
-    return this.currentUser;
+  getCurrentAuthorization(){
+    return this.authorization;
   }
   
   signIn(username:string, password: string){
     
-    console.log("AuthService: " + username)
+    //console.log("AuthService: " + username)
     
     
-    var body = {'username': username, 'password': password, 'grant-type': 'password'}
+    var params = {'username': username, 'password': password, 'grant_type': 'password'}
     var headers = new HttpHeaders({
       'Authorization': 'Basic YXBsaWNhY2lvbjp1bnNlY3JldG8=',
       'Content-Type': 'application/x-www-form-urlencoded',
       'Accept': 'application/json',
       'x-test-anchor':'fck-u-anchor'
     })
-     console.log(headers)
-    
-    return this.http.post(tokenUrl,body)
+    //console.log(headers.keys())
+
+    let r = this.http.post(tokenUrl,null,{headers:headers, params: params})
+
+    r.subscribe( data =>{
+      this.authorization = data;
+    })
+
+    return r
     
   }
   

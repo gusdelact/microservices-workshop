@@ -1,0 +1,8 @@
+
+
+<div *ngIf="notificationService.notifications.length">
+  <div *ngFor='let notification of notificationService.notifications' > 
+    <ngb-alert [type]="notification.type" (close)="close(notification)">{{notification.text}} </ngb-alert>
+  </div>
+
+</div>

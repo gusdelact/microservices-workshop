@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { AuthService } from '../services/auth.service'
+import { NotificationsService } from '../services/notifications.service'
 
 @Component({
   selector: 'app-sign-in',
@@ -12,7 +13,7 @@ export class SignInComponent implements OnInit {
   username: string = 'john.carnell'
   password: string = 'password1'
 
-  constructor( private authService:AuthService) { }
+  constructor( private authService:AuthService, private notificationsService:NotificationsService) { }
 
   ngOnInit() {
   }
@@ -21,11 +22,10 @@ export class SignInComponent implements OnInit {
     this.authService.signIn(this.username,this.password).subscribe(
       data=> {
         console.log("Authentication object: " + JSON.stringify(this.authService.getCurrentAuthorization()))
+        this.notificationsService.add({'type':'success', 'text':'Welcome!'})
       }, 
       err => {
-        //Invoke notification services
-        
-        console.log(err)
+        this.notificationsService.add({'type':'danger', 'text':err.message})
       })
   }
 

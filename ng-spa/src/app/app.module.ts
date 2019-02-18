@@ -14,16 +14,19 @@ import { ServiceInvokeComponent } from './service-invoke/service-invoke.componen
 
 import { AuthService } from './services/auth.service'
 import { MicroservicioBaseService } from './services/microservicio-base.service'
+import { NotificationsService } from './services/notifications.service'
 
 
 import { AuthInterceptor } from "./interceptors/auth-interceptor";
-import { AuthGuard } from "./guards/auth-guard"
+import { AuthGuard } from "./guards/auth-guard";
+import { NotificationsComponent } from './notifications/notifications.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     SignInComponent,
-    ServiceInvokeComponent
+    ServiceInvokeComponent,
+    NotificationsComponent
   ],
   imports: [
     BrowserModule,
@@ -36,6 +39,7 @@ import { AuthGuard } from "./guards/auth-guard"
     AuthService, 
     MicroservicioBaseService,
     AuthGuard,
+    NotificationsService,
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]

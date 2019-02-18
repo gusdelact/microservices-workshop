@@ -18,4 +18,20 @@ export class NotificationsService {
     this.notifications.push(n)
     setTimeout(() => this.close(n) , 10000);
   }
+
+  error(t:string){
+    this.add({'type': 'danger', 'text': t})
+  }
+
+  warn(t:string){
+    this.add({'type': 'warning', 'text': t})
+  }
+
+  success(t:string){
+    this.add({'type': 'success', 'text': t})
+  }
+
+  info(t:string){
+    this.add({'type': 'info', 'text': t})
+  }
 }

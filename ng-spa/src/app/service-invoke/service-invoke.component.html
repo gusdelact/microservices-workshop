@@ -1,3 +1,26 @@
-<p>
-  service-invoke works!
-</p>
+  <hr>
+  <div class="row">
+      <div class="col">
+    <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+    <div class="btn-group" role="group" aria-label="Basic example">
+        <button type="button" class="btn btn-primary" (click)= 'mensaje()'>Mensaje</button>
+        <button type="button" class="btn btn-primary" (click)= 'saludo()'>Saludo</button>
+    </div>
+    </div></div>
+  </div>
+  <div class="row">
+     <div class="col">
+      <div class="">
+        <div class="card card-body">
+
+            <ul class="list-group">
+                <li *ngFor='let serviceResponse of serviceResponses'
+                   class="list-group-item" >{{serviceResponse}}</li>
+            </ul>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+

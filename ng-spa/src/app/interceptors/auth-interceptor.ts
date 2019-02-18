@@ -11,12 +11,15 @@ export class AuthInterceptor implements HttpInterceptor{
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>>{
         
-        let user = this.authService.getCurrentUser();
-        const headers = new HttpHeaders({
-        });
+        //console.log("Request headers: " + request.headers.keys());
 
-        const _request = request.clone({headers});
-        return next.handle(_request);
+        //let user = this.authService.getCurrentUser();
+        //const headers = new HttpHeaders({
+        //});
+
+        //const _request = request.clone({headers});
+        //console.log("Request params: " + request.params.keys());
+        return next.handle(request);
     }
 
 

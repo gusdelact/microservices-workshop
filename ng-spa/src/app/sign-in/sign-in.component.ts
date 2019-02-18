@@ -19,8 +19,14 @@ export class SignInComponent implements OnInit {
 
   signIn(){
     this.authService.signIn(this.username,this.password).subscribe(
-      data=> console.log("Chelas" + data), 
-      err => console.log(err))
+      data=> {
+        console.log("Authentication object: " + JSON.stringify(this.authService.getCurrentAuthorization()))
+      }, 
+      err => {
+        //Invoke notification services
+        
+        console.log(err)
+      })
   }
 
 }

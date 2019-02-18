@@ -2,6 +2,8 @@ package com.gfi.microservicios;
 
 import static com.netflix.zuul.context.RequestContext.getCurrentContext;
 
+import java.util.Collections;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -32,18 +34,18 @@ public class ZuulCorsFilter extends ZuulFilter {
 	public Object run() {
 		RequestContext context = getCurrentContext();
 		
-		
-//		context.addZuulResponseHeader("Access-Control-Allow-Origin", "*");
-//		context.addZuulResponseHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS");
-//		context.addZuulResponseHeader("Access-Control-Allow-Headers", "Content-Type, Authorization, Cache-Control");
+		//String origin = context.getResponse().getHeader("Origin");
+		//context.addZuulResponseHeader("Access-Control-Allow-Origin", origin);
+		//context.addZuulResponseHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS");
+		//context.addZuulResponseHeader("Access-Control-Allow-Headers", "Content-Type, Authorization, Cache-Control");
 		// context.setSendZuulResponse(false);
-//		context.sendZuulResponse();
+		context.sendZuulResponse();
 
 		LOG.debug(context.toString());
 		
 		
-		for(String h : context.getResponse().getHeaderNames())
-			LOG.debug(h + " : " + context.getResponse().getHeader(h));
+		for(String h : Collections.list(context.getRequest().getHeaderNames()))
+			LOG.debug("RequestHeader: " + h + " : " + context.getRequest().getHeader(h));
 
 
 		if ("OPTIONS".equals(context.getRequest().getMethod())) {
@@ -51,6 +53,9 @@ public class ZuulCorsFilter extends ZuulFilter {
 			context.setRouteHost(null);
 			context.setResponseStatusCode(200);
 		}
+		
+		for(String h : context.getResponse().getHeaderNames())
+			LOG.debug("ResponseHeader: " + h + " : " + context.getResponse().getHeader(h));
 
 		return null;
 	}

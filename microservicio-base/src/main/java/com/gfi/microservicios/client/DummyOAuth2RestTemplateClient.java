@@ -55,8 +55,8 @@ public class DummyOAuth2RestTemplateClient{
     				@HystrixProperty (
     				   name="execution.isolation.thread.timeoutInMilliseconds",
     	               value="100"
-    	      ),
-    				@HystrixProperty(name = "execution.isolation.strategy", value = "SEMAPHORE")
+    	      )
+    				//,@HystrixProperty(name = "execution.isolation.strategy", value = "SEMAPHORE")
               }
     		)
 	

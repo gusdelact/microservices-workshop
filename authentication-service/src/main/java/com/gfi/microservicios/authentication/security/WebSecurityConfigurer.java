@@ -6,6 +6,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 
 
 @Configuration
@@ -29,6 +30,15 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
                 .inMemoryAuthentication()
                 .withUser("john.carnell").password("password1").roles("USER")
                 .and()
-                .withUser("william.woodward").password("password2").roles("USER", "ADMIN");
+                .withUser("william.woodward").password("password2").roles("USER", "ADMIN")
+                .and()
+                .withUser("rcastaneda").password("password1").roles("USER");
     }
+    
+    @Override
+	public void configure(HttpSecurity http) throws Exception {
+		super.configure(http);
+		http.authorizeRequests()
+			 .antMatchers("/health").permitAll();
+	}
 }

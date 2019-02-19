@@ -11,8 +11,8 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
 	public void configure(HttpSecurity http) throws Exception {
 		super.configure(http);
 		http.authorizeRequests()
-		     .anyRequest()
-		     .authenticated();
+			 .antMatchers("/health").permitAll()
+		     .anyRequest().authenticated();
 	}
 	
 }

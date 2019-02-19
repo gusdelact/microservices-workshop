@@ -1,17 +1,19 @@
 package com.gfi.microservicios.client;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.oauth2.client.OAuth2RestTemplate;
+import org.springframework.security.oauth2.client.token.AccessTokenRequest;
+import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.stereotype.Component;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 
 @Component
-public class DummyOAuth2RestTemplateClient {
+public class DummyOAuth2RestTemplateClient{
 
 	@Autowired
 	OAuth2RestTemplate restTemplate;
@@ -43,19 +45,20 @@ public class DummyOAuth2RestTemplateClient {
 	}
     
     
-//    @HystrixCommand(fallbackMethod="respuestaFallBackSaludo",
-//    		threadPoolKey="dummySaludoThreadPool2",
-//    		threadPoolProperties= {
-//    				@HystrixProperty(name="coreSize",value="15"),
-//    				@HystrixProperty(name="maxQueueSize",value="5"),
-//    		},
-//    		commandProperties={
-//    				@HystrixProperty (
-//    				   name="execution.isolation.thread.timeoutInMilliseconds",
-//    	               value="100"
-//    	      )
-//              }
-//    		)
+    @HystrixCommand(fallbackMethod="respuestaFallBackSaludo",
+    		threadPoolKey="dummySaludoThreadPool2",
+    		threadPoolProperties= {
+    				@HystrixProperty(name="coreSize",value="15"),
+    				@HystrixProperty(name="maxQueueSize",value="5"),
+    		},
+    		commandProperties={
+    				@HystrixProperty (
+    				   name="execution.isolation.thread.timeoutInMilliseconds",
+    	               value="100"
+    	      ),
+    				@HystrixProperty(name = "execution.isolation.strategy", value = "SEMAPHORE")
+              }
+    		)
 	
 	public String getSaludo() {
 		logger.info("Invocado  con OAuth2 a Dummy saludo");
@@ -73,6 +76,7 @@ public class DummyOAuth2RestTemplateClient {
     private String respuestaFallBackSaludo() {
     	return "dummy no está disponible para saludo";
     }
+
 
 }
 

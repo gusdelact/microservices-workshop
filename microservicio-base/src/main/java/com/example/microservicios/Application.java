@@ -1,4 +1,4 @@
-package com.gfi.microservicios;
+package com.example.microservicios;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -25,8 +25,8 @@ public class Application {
 	
 	@LoadBalanced
     @Bean
-    public OAuth2RestTemplate getOAuth2RestTemplate() {
-        return new OAuth2RestTemplate(customOauth2RemoteResource(), auth2ClientContext());
+    public OAuth2RestTemplate getOAuth2RestTemplate(OAuth2ClientContext auth2ClientContext) {
+        return new OAuth2RestTemplate(customOauth2RemoteResource(), auth2ClientContext);
     }
     
   
@@ -35,7 +35,7 @@ public class Application {
         SpringApplication.run(Application.class, args);
     }
 	
-	@Bean
+	//@Bean
 	public OAuth2ClientContext auth2ClientContext() { 
 		DefaultOAuth2ClientContext context = new DefaultOAuth2ClientContext();
 		return context;

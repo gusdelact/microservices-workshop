@@ -1,4 +1,4 @@
-package com.gfi.microservicios.controller;
+package com.example.microservicios.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -7,7 +7,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.gfi.microservicios.client.DummyOAuth2RestTemplateClient;
+import com.example.microservicios.client.DummyOAuth2RestTemplateClient;
+import com.example.microservicios.eventlog.EventLogEntry;
+import com.example.microservicios.eventlog.EventLogService;
 
 
 
@@ -20,7 +22,10 @@ public class MicroServicioController {
 		
 
 	@Autowired
-	DummyOAuth2RestTemplateClient dummyOAuth2RestTemplateClient; 
+	private DummyOAuth2RestTemplateClient dummyOAuth2RestTemplateClient; 
+	
+	@Autowired
+	private EventLogService eventLogService;
 	
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 	
@@ -36,6 +41,15 @@ public class MicroServicioController {
 		return "polo";
 	}
 	
+	@RequestMapping(value="/event", method = RequestMethod.POST)
+	public void event() {
+		
+		EventLogEntry entry = new EventLogEntry("Mensaje desde microservicio base");
+		// Publish event
+		eventLogService.send(entry);
+		
+		
+	}	
 	
 	@RequestMapping(value="/v3/mensaje",method = RequestMethod.GET)
 	public String metodoDummyMensajev3() {
@@ -43,6 +57,7 @@ public class MicroServicioController {
 		resultado=dummyOAuth2RestTemplateClient.getMensaje();
 		if (resultado==null) resultado= "hola dummy mensaje por omision";
 		logger.debug(resultado);
+		eventLogService.send(new EventLogEntry("GET Mensaje : "+resultado));	
 		return resultado;
 	}
 	

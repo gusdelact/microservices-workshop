@@ -1,4 +1,4 @@
-package com.gfi.microservicios.security;
+package com.example.microservicios.security;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;

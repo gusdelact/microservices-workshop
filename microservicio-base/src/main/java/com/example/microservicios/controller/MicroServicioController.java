@@ -47,6 +47,7 @@ public class MicroServicioController {
 		EventLogEntry entry = new EventLogEntry("Tweet text: " + tweet.getText());
 		// Publish event
 		eventLogService.send(entry);
+		logger.info("Post: " + entry);
 		
 		
 	}	

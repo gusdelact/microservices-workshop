@@ -5,6 +5,6 @@ import org.springframework.messaging.MessageChannel;
 
 public interface EventLogSource {
 	
-	@Output("employeeRegistrationChannel")
+	@Output("event-logs-topic")
 	MessageChannel getMessageChannel();
 }

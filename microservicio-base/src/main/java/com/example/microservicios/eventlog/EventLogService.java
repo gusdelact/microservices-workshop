@@ -24,4 +24,5 @@ public class EventLogService {
 		boolean r = eventLogSource.getMessageChannel().send(message);
 		log.info("Event published?: " + r);
 	}
+
 }

@@ -41,10 +41,10 @@ public class MicroServicioController {
 		return "polo";
 	}
 	
-	@RequestMapping(value="/event", method = RequestMethod.POST)
-	public void event() {
+	@RequestMapping(value="/event", method = RequestMethod.POST, consumes= {"application/json"})
+	public void event(Tweet tweet) {
 		
-		EventLogEntry entry = new EventLogEntry("Mensaje desde microservicio base");
+		EventLogEntry entry = new EventLogEntry("Tweet text: " + tweet.getText());
 		// Publish event
 		eventLogService.send(entry);
 		

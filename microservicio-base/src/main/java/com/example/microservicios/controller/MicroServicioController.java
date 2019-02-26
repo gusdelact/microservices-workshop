@@ -47,6 +47,7 @@ public class MicroServicioController {
 		EventLogEntry entry = new EventLogEntry("Mensaje desde microservicio base");
 		// Publish event
 		eventLogService.send(entry);
+		logger.info("Post: " + entry);
 		
 		
 	}	

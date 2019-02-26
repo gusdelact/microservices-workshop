@@ -11,7 +11,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.security.oauth2.client.DefaultOAuth2ClientContext;
 import org.springframework.security.oauth2.client.OAuth2ClientContext;
 import org.springframework.security.oauth2.client.OAuth2RestTemplate;
-import org.springframework.security.oauth2.client.resource.OAuth2ProtectedResourceDetails;
 import org.springframework.security.oauth2.client.token.grant.client.ClientCredentialsResourceDetails;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 
@@ -35,7 +34,7 @@ public class Application {
         SpringApplication.run(Application.class, args);
     }
 	
-	//@Bean
+	@Bean
 	public OAuth2ClientContext auth2ClientContext() { 
 		DefaultOAuth2ClientContext context = new DefaultOAuth2ClientContext();
 		return context;

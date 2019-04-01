@@ -1,0 +1,8 @@
+kind: "Service"
+apiVersion: "v1"
+metadata:
+  name: "external-redis-service"
+spec:
+  type: ExternalName
+  externalName: redis-insecure.8ilmc8.0001.use1.cache.amazonaws.com
+selector: {}

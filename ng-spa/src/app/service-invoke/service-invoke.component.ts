@@ -9,6 +9,8 @@ import { MicroservicioBaseService } from '../services/microservicio-base.service
 })
 export class ServiceInvokeComponent implements OnInit {
 
+  tweetText: string
+
   serviceResponses: string[] = []
 
   constructor(private microServicioBaseService: MicroservicioBaseService) { }
@@ -28,6 +30,24 @@ export class ServiceInvokeComponent implements OnInit {
     this.microServicioBaseService.mensaje().subscribe(data => {
       this.serviceResponses.unshift(data);
       console.log(data)
+    })
+  }
+
+  lastEvent(){
+    this.microServicioBaseService.lastEventLogs().subscribe(data => {
+      this.serviceResponses.unshift(data['createdAt']+ ' '+data['message'] )
+    })
+  }
+
+  postEvent(){
+    this.microServicioBaseService.postEvent(this.tweetText).subscribe(data => {
+      this.tweetText = null
+    })
+  }
+
+  eventsCounter(){
+    this.microServicioBaseService.eventsCounter().subscribe(data => {
+      this.serviceResponses.unshift('Events count: ' + data['number'])
     })
   }
 
